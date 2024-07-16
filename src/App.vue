@@ -1,25 +1,32 @@
-<!-- Ejemplo de vista en Vue.js -->
+<!-- src/App.vue -->
 <template>
-  <div>
-    <h1>{{ titulo }}</h1>
-    <p>{{ descripcion }}</p>
+  <div id="app">
+    <Header /> 
+    <router-view /> <!-- Componente dinámico para las rutas -->
+    <Footer /> 
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
+
 export default {
-  data() {
-    return {
-      titulo: 'Bienvenido a la Clínica',
-      descripcion: 'Gestiona tus pacientes de manera eficiente.'
-    };
+  name: 'App',
+  components: {
+    Header,
+    Footer
   }
-}
+};
 </script>
 
-<style scoped>
-/* Estilos específicos para este componente */
-h1 {
-  color: #333;
+<style>
+/* Estilos globales para #app */
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 </style>
