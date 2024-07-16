@@ -13,7 +13,6 @@
   
   <style scoped>
   .dashboard {
-    /* Estilos específicos para el dashboard si es necesario */
   }
   </style>
   
