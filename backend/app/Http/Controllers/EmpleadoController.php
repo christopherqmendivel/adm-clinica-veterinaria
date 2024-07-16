@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-
 use App\Models\Empleado;
 use App\Models\Clinica;
-
-
 
 class EmpleadoController extends Controller
 {
@@ -19,8 +15,8 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleados = Empleado::all();
-        return view('empleados.index', compact('empleados'));
+        // Devuelve todos los empleados como JSON
+        return response()->json(Empleado::all());
     }
 
     /**
@@ -52,13 +48,14 @@ class EmpleadoController extends Controller
         ]);
 
         Empleado::create($validated);
+
         return redirect()->route('empleados.index')->with('success', 'Empleado creado exitosamente.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
     public function show(Empleado $empleado)
@@ -66,11 +63,10 @@ class EmpleadoController extends Controller
         return view('empleados.show', compact('empleado'));
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
     public function edit(Empleado $empleado)
@@ -83,7 +79,7 @@ class EmpleadoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Empleado $empleado)
@@ -98,19 +94,21 @@ class EmpleadoController extends Controller
         ]);
 
         $empleado->update($validated);
+
         return redirect()->route('empleados.index')->with('success', 'Empleado actualizado exitosamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
     public function destroy(Empleado $empleado)
     {
         $empleado->delete();
+
         return redirect()->route('empleados.index')
-                ->with('success', 'Empleado eliminado exitosamente.');
+            ->with('success', 'Empleado eliminado exitosamente.');
     }
 }
