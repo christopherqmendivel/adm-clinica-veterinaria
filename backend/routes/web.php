@@ -17,9 +17,6 @@
     |
     */
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
-    
-    Route::resource('clinicas', ClinicaController::class);
-    Route::resource('empleados', EmpleadoController::class);
+    Route::get('/{any}', function () {
+        return view('app'); // Carga la vista principal de Vue.js
+    })->where('any', '.*');
